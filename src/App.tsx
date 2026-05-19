@@ -1,13 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+// src/App.tsx
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<div className="p-8 text-2xl font-bold">AS241 HF T5 — Ready</div>} />
-      </Routes>
-    </BrowserRouter>
-  )
+import AppRoutes from "./routes/AppRoutes";
+
+export default function App() {
+  return <AppRoutes />;
 }
-
-export default App
