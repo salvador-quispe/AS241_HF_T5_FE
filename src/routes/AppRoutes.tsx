@@ -11,6 +11,7 @@ import MainLayout from "../components/layout/MainLayout";
 
 import DashboardPage from "../pages/DashboardPage";
 import TalentPage from "../pages/TalentPage";
+import PerfilEstudiantePage from "../pages/PerfilEstudiantePage";
 
 export default function AppRoutes() {
   return (
@@ -31,6 +32,11 @@ export default function AppRoutes() {
           <Route
             path="/talento"
             element={<TalentPage />}
+          />
+
+          <Route
+            path="/perfil-estudiante"
+            element={<PerfilEstudiantePage />}
           />
         </Route>
       </Routes>

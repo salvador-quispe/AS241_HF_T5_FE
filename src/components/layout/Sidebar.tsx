@@ -20,6 +20,12 @@ const NAV_ITEMS = [
     description: "Métricas y rendimiento",
   },
   {
+    path: "/perfil-estudiante",
+    label: "Perfil Estudiante",
+    icon: StudentIcon,
+    description: "Análisis demográfico",
+  },
+  {
     path: "/talento",
     label: "Talento",
     icon: StudentIcon,
@@ -132,7 +138,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
           
           {!isCollapsed && (
             <div className="min-w-0 flex-1 animate-in fade-in slide-in-from-left-2 duration-300">
-              <p className="text-sm xl:text-[14px] font-bold text-gray-900 truncate leading-none">Carlos Smith</p>
+              <p className="text-sm xl:text-[14px] font-bold text-gray-900 truncate leading-none">Admin User</p>
               <p className="text-xs text-gray-500 font-semibold mt-1">Administrador</p>
             </div>
           )}
