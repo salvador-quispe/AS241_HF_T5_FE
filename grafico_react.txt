@@ -1,0 +1,121 @@
+-- Comando
+npm install recharts
+----------------------------
+import React from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+
+// 1. Simulación de los datos importados directamente desde tu "datos_tecnicos_react.json"
+const dataJSON = {
+  "resumen_global": {
+    "total_encuestados": 68,
+    "total_tecnicas": 29,
+    "porcentaje_impacto_global": 42.6
+  },
+  "subcategorias_tecnicas": [
+    { "categoria": "Programación y Código General", "votos": 11, "porcentaje_del_subtotal": 37.9 },
+    { "categoria": "Lógica y Algoritmia (Seudocódigo/Flujograma)", "votos": 7, "porcentaje_del_subtotal": 24.1 },
+    { "categoria": "Bases de Datos y Análisis (SQL/Sheets)", "votos": 4, "porcentaje_del_subtotal": 13.8 },
+    { "categoria": "Arquitectura, Backend y DevOps (Docker)", "votos": 3, "porcentaje_del_subtotal": 10.3 },
+    { "categoria": "Infraestructura, Redes y AWS", "votos": 3, "porcentaje_del_subtotal": 10.3 },
+    { "categoria": "Desarrollo Frontend (HTML/CSS)", "votos": 1, "porcentaje_del_subtotal": 3.4 }
+  ]
+};
+
+// 2. Paleta UI/UX idéntica a Python y fácil de configurar en Figma
+const COLORES = ['#0f172a', '#1d4ed8', '#38bdf8', '#f59e0b', '#f97316', '#cbd5e1'];
+
+export default function GraficoDonutTecnico() {
+  const { subcategorias_tecnicas, resumen_global } = dataJSON;
+
+  return (
+    <div className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      {/* Encabezado del Dashboard */}
+      <div className="mb-6">
+        <h3 className="text-lg font-bold text-slate-900 tracking-tight">
+          MATRIZ DE REQUERIMIENTOS: CAPACITACIÓN TÉCNICA TOTAL
+        </h3>
+        <p className="text-sm text-slate-500">Desglose interno de demanda técnica de estudiantes</p>
+      </div>
+
+      {/* Contenedor Principal en Dos Columnas (Gráfico e Indicadores) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        
+        {/* COLUMNA 1: El Gráfico de Donut Interactiva con Texto Central */}
+        <div className="relative flex justify-center items-center h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={subcategorias_tecnicas}
+                dataKey="votos"
+                nameKey="categoria"
+                cx="50%"
+                cy="50%"
+                innerRadius={75}   // Define el hueco interior de la dona
+                outerRadius={105}  // Grosor exterior
+                paddingAngle={3}   // Espaciado estético entre bloques
+                startAngle={90}    // Inicia arriba en vertical (estilo Figma)
+              >
+                {subcategorias_tecnicas.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORES[index % COLORES.length]} className="cursor-pointer outline-none" />
+                ))}
+              </Pie>
+              <Tooltip 
+                formatter={(value, name) => [`${value} Alumnos`, 'Cantidad']}
+                contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', borderColor: '#e2e8f0' }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+
+          {/* Texto Absoluto en el Centro de la Dona */}
+          <div className="absolute text-center flex flex-col justify-center pointer-events-none">
+            <span className="text-3xl font-black text-slate-800 leading-none">
+              {resumen_global.total_tecnicas}
+            </span>
+            <span className="text-xs font-bold text-slate-500 mt-1 uppercase tracking-wider">
+              Alumnos
+            </span>
+            <span className="text-xs font-medium text-slate-400">
+              ({resumen_global.porcentaje_impacto_global}%)
+            </span>
+          </div>
+        </div>
+
+        {/* COLUMNA 2: Matriz de Leyendas Estilo Tarjetas UI */}
+        <div className="flex flex-col gap-2.5">
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+            Métricas de Carga de Demanda
+          </span>
+          
+          {subcategorias_tecnicas.map((item, index) => (
+            <div 
+              key={index} 
+              className="flex items-center justify-between p-2.5 rounded-lg border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-sm transition-all duration-200"
+            >
+              {/* Indicador de Color y Nombre de Categoría */}
+              <div className="flex items-center gap-3 min-w-0">
+                <div 
+                  className="w-3.5 h-3.5 rounded-full flex-shrink-0" 
+                  style={{ backgroundColor: COLORES[index % COLORES.length] }}
+                />
+                <span className="text-xs font-semibold text-slate-700 truncate">
+                  {item.categoria}
+                </span>
+              </div>
+              
+              {/* Datos cuantitativos a la derecha */}
+              <div className="flex items-center gap-4 flex-shrink-0 text-right">
+                <span className="text-xs font-medium text-slate-400">
+                  ({item.votos} {item.votos === 1 ? 'Alum.' : 'Alum.'})
+                </span>
+                <span className="text-sm font-bold text-slate-900 w-12">
+                  {item.porcentaje_del_subtotal}%
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  );
+}
