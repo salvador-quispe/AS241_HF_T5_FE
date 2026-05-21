@@ -10,10 +10,10 @@ export default function Tabs({
   setActiveTab,
 }: TabsProps) {
   return (
-    <div className="flex items-center gap-3 bg-gray-100 p-2 rounded-2xl w-fit">
+    <div className="flex w-fit items-center gap-1 rounded-xl bg-gray-100 p-1">
       <button
         onClick={() => setActiveTab("brechas")}
-        className={`px-5 py-2 rounded-xl font-medium transition-all
+        className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all
         ${
           activeTab === "brechas"
             ? "bg-[#003F87] text-white"
@@ -25,7 +25,7 @@ export default function Tabs({
 
       <button
         onClick={() => setActiveTab("empleabilidad")}
-        className={`px-5 py-2 rounded-xl font-medium transition-all
+        className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all
         ${
           activeTab === "empleabilidad"
             ? "bg-[#FDC003] text-[#003F87]"

@@ -1,10 +1,11 @@
-// src/components/layout/Header.tsx
-import AppIcon from "../ui/AppIcon";
+import { useLocation, useSearchParams } from "react-router-dom";
+
 import {
-  Search01Icon,
   Notification03Icon,
   Settings02Icon,
 } from "../../constants/icons";
+import AppIcon from "../ui/AppIcon";
+import Tabs from "../ui/Tabs";
 
 interface HeaderProps {
   title?: string;
@@ -12,32 +13,33 @@ interface HeaderProps {
 }
 
 export default function Header({ title = "Panel", subtitle = "Plataforma" }: HeaderProps) {
-  return (
-    <header className="h-20 bg-white border-b border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.03)] px-8 flex items-center justify-between sticky top-0 z-40">
-      
-      {/* IZQUIERDA: Título Dinámico del Módulo */}
-      <div className="flex flex-col animate-in fade-in slide-in-from-left-4 duration-500">
-        <h2 className="text-xl font-black text-[#003F87] tracking-tighter leading-none uppercase">
-          {title}
-        </h2>
-        <p className="text-[11px] font-bold text-gray-400 mt-1 uppercase tracking-widest">
-          {subtitle}
-        </p>
-      </div>
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") === "empleabilidad" ? "empleabilidad" : "brechas";
+  const showTalentTabs = location.pathname === "/talento";
 
-      {/* DERECHA: Acciones y Buscador */}
-      <div className="flex items-center gap-6 whitespace-nowrap">
-        
-        {/* Buscador compacto */}
-        <div className="relative group hidden md:block">
-          <AppIcon icon={Search01Icon} size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#003F87]" />
-          <input 
-            type="text" 
-            placeholder="Buscar..." 
-            className="pl-9 pr-4 py-2 bg-gray-50 border-none rounded-xl text-xs w-40 focus:w-60 focus:bg-white focus:ring-1 focus:ring-gray-200 transition-all outline-none"
-          />
+  function setActiveTab(tab: string) {
+    setSearchParams({ tab, page: "1" });
+  }
+
+  return (
+    <header className="h-20 bg-white border-b border-gray-100 shadow-[0_4px_12px_rgba(0,0,0,0.03)] px-8 flex items-center justify-between gap-5 sticky top-0 z-40">
+      <div className="flex min-w-0 flex-1 items-center gap-5 animate-in fade-in slide-in-from-left-4 duration-500">
+        <div className="min-w-[230px]">
+          <h2 className="text-xl font-black text-[#003F87] tracking-tighter leading-none uppercase">
+            {title}
+          </h2>
+          <p className="text-[11px] font-bold text-gray-400 mt-1 uppercase tracking-widest">
+            {subtitle}
+          </p>
         </div>
 
+        {showTalentTabs && (
+          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        )}
+      </div>
+
+      <div className="flex shrink-0 items-center gap-4 whitespace-nowrap">
         <div className="flex items-center gap-2">
           <button className="relative p-2 text-gray-500 hover:bg-gray-50 rounded-xl transition-all">
             <AppIcon icon={Notification03Icon} size={22} />
@@ -46,7 +48,7 @@ export default function Header({ title = "Panel", subtitle = "Plataforma" }: Hea
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FDC003]"></span>
             </span>
           </button>
-          
+
           <button className="p-2 text-gray-400 hover:bg-gray-50 rounded-xl transition-all">
             <AppIcon icon={Settings02Icon} size={22} />
           </button>
@@ -54,7 +56,6 @@ export default function Header({ title = "Panel", subtitle = "Plataforma" }: Hea
 
         <div className="w-px h-6 bg-gray-200" />
 
-        {/* Estado del Sistema */}
         <div className="flex items-center gap-3 bg-emerald-50/50 px-4 py-2 rounded-xl border border-emerald-100">
           <span className="text-[10px] font-black text-emerald-700 uppercase tracking-wider">
             Online

@@ -9,8 +9,8 @@ import {
 
 import MainLayout from "../components/layout/MainLayout";
 
+import BrechasEmpleabilidadPage from "../pages/BrechasEmpleabilidadPage";
 import DashboardPage from "../pages/DashboardPage";
-import TalentPage from "../pages/TalentPage";
 
 export default function AppRoutes() {
   return (
@@ -30,7 +30,7 @@ export default function AppRoutes() {
 
           <Route
             path="/talento"
-            element={<TalentPage />}
+            element={<BrechasEmpleabilidadPage />}
           />
         </Route>
       </Routes>
