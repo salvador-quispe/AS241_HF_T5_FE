@@ -12,6 +12,7 @@ export default function MainLayout() {
   const routeTitles: Record<string, { t: string; s: string }> = {
     "/dashboard": { t: "Dashboard Principal", s: "Resumen de métricas y rendimiento" },
     "/talento": { t: "Talento Estudiantil", s: "Gestión de perfiles profesionales" },
+    "/habilidades-digitales": { t: "Habilidades Digitales", s: "Análisis de competencias tecnológicas" },
     // Añade más rutas aquí
   };
 
