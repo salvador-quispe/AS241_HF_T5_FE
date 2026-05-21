@@ -5,6 +5,7 @@ import {
   ArrowRight01Icon,
   BarChartHorizontalIcon,
   StudentIcon,
+  Briefcase01Icon,
 } from "../../constants/icons";
 
 interface SidebarProps {
@@ -24,6 +25,12 @@ const NAV_ITEMS = [
     label: "Talento",
     icon: StudentIcon,
     description: "Habilidades y brechas",
+  },
+  {
+    path: "/habilidades-profesionales",
+    label: "Habil. Profesionales",
+    icon: Briefcase01Icon,
+    description: "Blandas y técnicas",
   },
 ];
 
