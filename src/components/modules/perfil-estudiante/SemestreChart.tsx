@@ -25,7 +25,7 @@ export default function SemestreChart({ semestres }: Props) {
             <YAxis />
             <Tooltip formatter={(value) => `${value} estudiantes`} />
             <Bar dataKey="estudiantes" radius={[8, 8, 0, 0]}>
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={index === 0 ? '#003F87' : '#FDC003'} />
               ))}
             </Bar>

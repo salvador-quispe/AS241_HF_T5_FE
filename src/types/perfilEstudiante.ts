@@ -2,39 +2,27 @@
 
 export interface KPIMetrics {
   total_estudiantes: number;
-  porcentaje_crecimiento: number;
   edad_promedio: number;
   edad_minima: number;
   edad_maxima: number;
   estudiantes_riesgo: number;
-  meta_institucional: number;
   logro_institucional: number;
 }
 
-export interface DistribucionGenero {
-  hombres: number;
-  mujeres: number;
-  porcentaje_hombres: number;
-  porcentaje_mujeres: number;
-}
-
-export interface DistribucionCarrera {
-  carrera: string;
-  hombres: number;
-  mujeres: number;
-  total: number;
-  porcentaje: number;
+export interface PreparacionLaboral {
+  level: 'LOW' | 'MEDIUM' | 'HIGH' | string;
+  student_count: number;
+  percentage: number;
 }
 
 export interface DistribucionDistrito {
   distrito: string;
-  provincia: string;
   cantidad_estudiantes: number;
   porcentaje_participacion: number;
 }
 
 export interface DistribucionSemestre {
-  semestre: number;
+  semestre: string;
   cantidad_estudiantes: number;
   porcentaje: number;
 }
@@ -46,23 +34,15 @@ export interface DistribucionEdad {
 }
 
 export interface RiesgoPorSemestre {
-  semestre: number;
+  semestre: string;
   total_estudiantes: number;
   estudiantes_riesgo: number;
   porcentaje_riesgo: number;
 }
 
-export interface TasaRetencion {
-  tasa_actual: number;
-  meta_institucional: number;
-  cumple_meta: boolean;
-  diferencia: number;
-}
-
 export interface DashboardPerfilEstudiante {
   indicadores_kpi: KPIMetrics;
-  distribucion_genero: DistribucionGenero;
-  distribucion_carreras: DistribucionCarrera[];
+  job_readiness_distribution: PreparacionLaboral[];
   distribucion_distritos: DistribucionDistrito[];
   distribucion_semestres: DistribucionSemestre[];
   distribucion_edades: DistribucionEdad[];

@@ -33,7 +33,7 @@ export default function EdadChart({ edades }: Props) {
               label={({ name, porcentaje }) => `${name}: ${porcentaje}%`}
               labelLine={false}
             >
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>

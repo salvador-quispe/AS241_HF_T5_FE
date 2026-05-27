@@ -15,16 +15,14 @@ export default function DistritoTable({ distritos }: Props) {
           <thead>
             <tr className="border-b border-gray-200">
               <th className="text-left py-3 font-semibold text-gray-600">DISTRITO</th>
-              <th className="text-left py-3 font-semibold text-gray-600">PROVINCIA</th>
-              <th className="text-center py-3 font-semibold text-gray-600">N° ESTUDIANTES</th>
-              <th className="text-center py-3 font-semibold text-gray-600">PARTICIPACIÓN</th>
+              <th className="text-center py-3 font-semibold text-gray-600">N. ESTUDIANTES</th>
+              <th className="text-center py-3 font-semibold text-gray-600">PARTICIPACION</th>
             </tr>
           </thead>
           <tbody>
             {distritos.map((distrito, idx) => (
               <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
                 <td className="py-3 font-medium text-gray-800">{distrito.distrito}</td>
-                <td className="py-3 text-gray-600">{distrito.provincia}</td>
                 <td className="text-center py-3 text-gray-600">{distrito.cantidad_estudiantes}</td>
                 <td className="text-center py-3">
                   <span className="px-2 py-1 bg-blue-50 text-[#003F87] rounded-lg text-xs font-bold">
@@ -37,7 +35,7 @@ export default function DistritoTable({ distritos }: Props) {
         </table>
       </div>
       <p className="text-xs text-gray-400 mt-4">
-        Mostrando principales {distritos.length} distritos de la región Cañete.
+        Mostrando principales {distritos.length} distritos.
       </p>
     </div>
   );
