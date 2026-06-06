@@ -2,8 +2,10 @@
 
 import { HugeiconsIcon } from "@hugeicons/react";
 
+export type AppIconDefinition = readonly (readonly [string, Record<string, string | number>])[];
+
 interface AppIconProps {
-  icon: any;
+  icon: AppIconDefinition;
   size?: number;
   className?: string;
   strokeWidth?: number;

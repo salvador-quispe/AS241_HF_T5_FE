@@ -1,4 +1,4 @@
-import AppIcon from "../components/ui/AppIcon";
+import AppIcon, { type AppIconDefinition } from "../components/ui/AppIcon";
 import {
   StudentIcon,
   AnalyticsUpIcon,
@@ -13,7 +13,7 @@ interface KpiCard {
   value: string;
   delta: string;
   positive: boolean;
-  icon: any;
+  icon: AppIconDefinition;
   accent: string;
 }
 

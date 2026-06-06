@@ -23,7 +23,7 @@ export default function RiesgoTable({ riesgo }: Props) {
           <tbody>
             {riesgo.map((item, idx) => (
               <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
-                <td className="py-3 font-medium text-gray-800">{item.semestre}° Semestre</td>
+                <td className="py-3 font-medium text-gray-800">{item.semestre}</td>
                 <td className="text-center py-3 text-gray-600">{item.total_estudiantes}</td>
                 <td className="text-center py-3">
                   <span className="px-2 py-1 bg-red-50 text-red-600 rounded-lg text-xs font-bold">

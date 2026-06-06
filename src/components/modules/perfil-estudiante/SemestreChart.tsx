@@ -9,7 +9,7 @@ interface Props {
 
 export default function SemestreChart({ semestres }: Props) {
   const data = semestres.map(s => ({
-    semestre: `${s.semestre}° Semestre`,
+    semestre: s.semestre,
     estudiantes: s.cantidad_estudiantes,
     porcentaje: s.porcentaje,
   }));
